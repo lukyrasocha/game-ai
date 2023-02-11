@@ -27,7 +27,7 @@ class Pacman(object):
                 self.target = self.getNewTarget(direction)
                 if self.target is not self.node:
                     self.direction = direction
-                else:
+                else: # so then if you have o----x-----x the pacman would continue to the right most x without stopping at the first x
                     self.target = self.getNewTarget(self.direction)
 
                 if self.target is self.node:
