@@ -26,9 +26,6 @@ class GameController(object):
         self.pacman.setEnemy(self.ghost)
         self.ghost.setEnemy(self.pacman)
 
-
-
-
     def update(self):
         dt = self.clock.tick(30) / 1000.0
         self.pacman.update(dt)
