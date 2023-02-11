@@ -2,6 +2,7 @@ import pygame
 from vector import Vector2
 from constants import *
 import numpy as np
+import random
 
 class Node(object):
     def __init__(self, x, y):
@@ -88,4 +89,4 @@ class NodeGroup(object):
 
     def getStartTempNode(self):
         nodes = list(self.nodesLUT.values())
-        return nodes[0]
+        return random.choice(nodes) 
