@@ -2,18 +2,14 @@ import pygame
 from pygame.locals import *
 from vector import Vector2
 from constants import *
+from entity import Entity
 
-class Pacman(object):
+
+class Pacman(Entity):
     def __init__(self, node):
+        Entity.__init__(self, node )
         self.name = PACMAN
-        self.directions = {STOP:Vector2(), UP:Vector2(0,-1), DOWN:Vector2(0,1), LEFT:Vector2(-1,0), RIGHT:Vector2(1,0)}
-        self.direction = STOP
-        self.speed = 100
-        self.radius = 10
         self.color = YELLOW
-        self.node = node
-        self.setPosition()
-        self.target = node
 
 
     def setPosition(self):
