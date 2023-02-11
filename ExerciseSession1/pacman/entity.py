@@ -18,11 +18,21 @@ class Entity(object):
         self.setPosition()
         self.target = node
         self.visible = True
+        self.goal = None
         self.disablePortal = False
+        self.directionMethod = self.randomDirection
+        self.enemy = None
+
+
+    def setEnemy(self, enemy):
+        self.enemy = enemy
 
     def setPosition(self):
         self.position = self.node.position.copy()
           
+    def getPosition(self):
+        return self.position
+
     def validDirection(self, direction):
         if direction is not STOP:
             if self.node.neighbors[direction] is not None:
@@ -64,19 +74,24 @@ class Entity(object):
             pygame.draw.circle(screen, self.color, p, self.radius)
 
     def update(self, dt):
+        self.updateGoal(self.enemy.getPosition())
         self.position += self.directions[self.direction]*self.speed*dt
          
         if self.overshotTarget():
             self.node = self.target
             directions = self.validDirections()
-            direction = self.randomDirection(directions)   
+            direction = self.directionMethod(directions)
             self.target = self.getNewTarget(direction)
+
             if self.target is not self.node:
                 self.direction = direction
             else:
                 self.target = self.getNewTarget(self.direction)
 
             self.setPosition()
+
+    def updateGoal(self, vec):
+        self.goal = vec
 
     def validDirections(self):
         directions = []
@@ -90,3 +105,21 @@ class Entity(object):
 
     def randomDirection(self, directions):
         return directions[randint(0, len(directions)-1)]
+
+    def chaseDirection(self, directions):
+        distances = []
+        for direction in directions:
+            vec = self.node.position + self.directions[direction]*TILEWIDTH - self.goal
+            distances.append(vec.magnitudeSquared())
+
+        index = distances.index(min(distances))
+        return directions[index] 
+
+    def fleeDirection(self, directions):
+        distances = []
+        for direction in directions:
+            vec = self.node.position + self.directions[direction]*TILEWIDTH - self.goal
+            distances.append(vec.magnitudeSquared())
+
+        index = distances.index(max(distances))
+        return directions[index] 
