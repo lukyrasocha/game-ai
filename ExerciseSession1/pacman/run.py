@@ -23,6 +23,9 @@ class GameController(object):
         self.nodes = NodeGroup("mazemap.txt")
         self.pacman = Pacman(self.nodes.getStartTempNode())
         self.ghost = Ghost(self.nodes.getStartTempNode())
+        self.pacman.setEnemy(self.ghost)
+        self.ghost.setEnemy(self.pacman)
+
 
 
 
