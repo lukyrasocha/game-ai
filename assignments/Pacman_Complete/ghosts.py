@@ -69,6 +69,7 @@ class Blinky(Ghost):
     def __init__(self, node, pacman=None, blinky=None):
         Ghost.__init__(self, node, pacman, blinky)
         self.name = BLINKY
+        self.nickname = "Blinky, Red"
         self.color = RED
         self.sprites = GhostSprites(self)
 
@@ -77,6 +78,7 @@ class Pinky(Ghost):
     def __init__(self, node, pacman=None, blinky=None):
         Ghost.__init__(self, node, pacman, blinky)
         self.name = PINKY
+        self.nickname = "Pinky, Pink"
         self.color = PINK
         self.sprites = GhostSprites(self)
 
@@ -91,6 +93,7 @@ class Inky(Ghost):
     def __init__(self, node, pacman=None, blinky=None):
         Ghost.__init__(self, node, pacman, blinky)
         self.name = INKY
+        self.nickname = "Inky, Teal"
         self.color = TEAL
         self.sprites = GhostSprites(self)
 
@@ -107,6 +110,7 @@ class Clyde(Ghost):
     def __init__(self, node, pacman=None, blinky=None):
         Ghost.__init__(self, node, pacman, blinky)
         self.name = CLYDE
+        self.nickname = "Clyde, Orange"
         self.color = ORANGE
         self.sprites = GhostSprites(self)
 
